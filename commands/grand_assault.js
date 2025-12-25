@@ -6,9 +6,10 @@ const puppeteer = require('puppeteer');
 
 module.exports = {
     data: new SlashCommandBuilder()
-        .setName('대결전') // 또는 '대결전'
-        .setDescription('현재 진행 중인 대결전의 공략 링크를 보여줍니다.'),
+        .setName('대결전')
+        .setDescription('현재 진행 중인 대결전 정보를 확인합니다.'),
 
+    // 명령어가 실행될 때 수행할 로직
     async execute(interaction) {
         await interaction.reply('키보토스는 평화로운 상태에요!');
     },
@@ -28,8 +29,14 @@ module.exports = {
 
     //         // 2. Puppeteer(브라우저) 실행
     //         browser = await puppeteer.launch({
-    //             headless: "new", // 브라우저 창을 띄우지 않음
-    //             args: ['--no-sandbox', '--disable-setuid-sandbox'] // 리눅스/서버 환경 호환성 옵션
+    //             headless: "new",
+    //             // 👇 여기를 확인된 경로(/usr/bin/chromium)로 변경!
+    //             executablePath: '/usr/bin/chromium', 
+    //             args: [
+    //                 '--no-sandbox', 
+    //                 '--disable-setuid-sandbox',
+    //                 '--disable-dev-shm-usage'
+    //             ] 
     //         });
 
     //         const page = await browser.newPage();
@@ -98,3 +105,4 @@ module.exports = {
     //     }
     // },
 };
+
